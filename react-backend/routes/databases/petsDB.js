@@ -1,7 +1,7 @@
-export const data = [
+const data = [
     {
         "id": 0,
-        "animal": "Dog",
+        "animal": "Dogs",
         "breed": "American Bulldog",
         "name": "Bella",
         "age": 2,
@@ -11,7 +11,7 @@ export const data = [
     },
     {
         "id": 1,
-        "animal": "Dog",
+        "animal": "Dogs",
         "breed": "American Bulldog",
         "name": "Luna",
         "age": 2,
@@ -21,7 +21,7 @@ export const data = [
     },
     {
         "id": 2,
-        "animal": "Dog",
+        "animal": "Dogs",
         "breed": "American Bulldog",
         "name": "Charlie",
         "age": 4,
@@ -31,8 +31,8 @@ export const data = [
     },
     {
         "id": 3,
-        "animal": "Dog",
-        "breed": "American Staffordshire Terrier ",
+        "animal": "Dogs",
+        "breed": "American Staffordshire Terrier",
         "name": "Lucy",
         "age": 9,
         "zipcode": 94117,
@@ -41,8 +41,8 @@ export const data = [
     },
     {
         "id": 4,
-        "animal": "Dog",
-        "breed": "American Staffordshire Terrier ",
+        "animal": "Dogs",
+        "breed": "American Staffordshire Terrier",
         "name": "Cooper",
         "age": 5,
         "zipcode": 10012,
@@ -51,8 +51,8 @@ export const data = [
     },
     {
         "id": 5,
-        "animal": "Dog",
-        "breed": "Beagle ",
+        "animal": "Dogs",
+        "breed": "Beagle",
         "name": "Max",
         "age": 10,
         "zipcode": 10012,
@@ -61,8 +61,8 @@ export const data = [
     },
     {
         "id": 6,
-        "animal": "Dog",
-        "breed": "Beagle ",
+        "animal": "Dogs",
+        "breed": "Beagle",
         "name": "Bailey",
         "age": 5,
         "zipcode": 94117,
@@ -71,8 +71,8 @@ export const data = [
     },
     {
         "id": 7,
-        "animal": "Dog",
-        "breed": "Boxer ",
+        "animal": "Dogs",
+        "breed": "Boxer",
         "name": "Daisy",
         "age": 6,
         "zipcode": 98109,
@@ -81,8 +81,8 @@ export const data = [
     },
     {
         "id": 8,
-        "animal": "Dog",
-        "breed": "Boxer ",
+        "animal": "Dogs",
+        "breed": "Boxer",
         "name": "Sadie",
         "age": 10,
         "zipcode": 10012,
@@ -91,8 +91,8 @@ export const data = [
     },
     {
         "id": 9,
-        "animal": "Dog",
-        "breed": "Boxer ",
+        "animal": "Dogs",
+        "breed": "Boxer",
         "name": "Lola",
         "age": 8,
         "zipcode": 98109,
@@ -101,8 +101,8 @@ export const data = [
     },
     {
         "id": 10,
-        "animal": "Dog",
-        "breed": "Chihuahua ",
+        "animal": "Dogs",
+        "breed": "Chihuahua",
         "name": "Buddy",
         "age": 9,
         "zipcode": 98109,
@@ -111,8 +111,8 @@ export const data = [
     },
     {
         "id": 11,
-        "animal": "Dog",
-        "breed": "Chihuahua ",
+        "animal": "Dogs",
+        "breed": "Chihuahua",
         "name": "Molly",
         "age": 13,
         "zipcode": 94117,
@@ -121,8 +121,8 @@ export const data = [
     },
     {
         "id": 12,
-        "animal": "Dog",
-        "breed": "Husky ",
+        "animal": "Dogs",
+        "breed": "Husky",
         "name": "Stella",
         "age": 6,
         "zipcode": 10012,
@@ -131,8 +131,8 @@ export const data = [
     },
     {
         "id": 13,
-        "animal": "Dog",
-        "breed": "Husky ",
+        "animal": "Dogs",
+        "breed": "Husky",
         "name": "Tucker",
         "age": 5,
         "zipcode": 98109,
@@ -141,8 +141,8 @@ export const data = [
     },
     {
         "id": 14,
-        "animal": "Dog",
-        "breed": "Husky ",
+        "animal": "Dogs",
+        "breed": "Husky",
         "name": "Bear",
         "age": 12,
         "zipcode": 98109,
@@ -151,7 +151,7 @@ export const data = [
     },
     {
         "id": 15,
-        "animal": "Dog",
+        "animal": "Dogs",
         "breed": "Labrador Retriever",
         "name": "Zoey",
         "age": 11,
@@ -161,7 +161,7 @@ export const data = [
     },
     {
         "id": 16,
-        "animal": "Dog",
+        "animal": "Dogs",
         "breed": "Labrador Retriever",
         "name": "Duke",
         "age": 12,
@@ -171,7 +171,7 @@ export const data = [
     },
     {
         "id": 17,
-        "animal": "Dog",
+        "animal": "Dogs",
         "breed": "Labrador Retriever",
         "name": "Harley",
         "age": 8,
@@ -181,7 +181,7 @@ export const data = [
     },
     {
         "id": 18,
-        "animal": "Dog",
+        "animal": "Dogs",
         "breed": "Labrador Retriever",
         "name": "Maggie",
         "age": 10,
@@ -191,7 +191,7 @@ export const data = [
     },
     {
         "id": 19,
-        "animal": "Dog",
+        "animal": "Dogs",
         "breed": "Labrador Retriever",
         "name": "Jax",
         "age": 13,
@@ -201,8 +201,8 @@ export const data = [
     },
     {
         "id": 20,
-        "animal": "Dog",
-        "breed": "Pit Bull Terrier ",
+        "animal": "Dogs",
+        "breed": "Pit Bull Terrier",
         "name": "Bentley",
         "age": 12,
         "zipcode": 98109,
@@ -211,8 +211,8 @@ export const data = [
     },
     {
         "id": 21,
-        "animal": "Dog",
-        "breed": "Pit Bull Terrier ",
+        "animal": "Dogs",
+        "breed": "Pit Bull Terrier",
         "name": "Milo",
         "age": 3,
         "zipcode": 98109,
@@ -221,7 +221,7 @@ export const data = [
     },
     {
         "id": 22,
-        "animal": "Cat",
+        "animal": "Cats",
         "breed": "Maine Coon",
         "name": "Oliver",
         "age": 2,
@@ -231,7 +231,7 @@ export const data = [
     },
     {
         "id": 23,
-        "animal": "Cat",
+        "animal": "Cats",
         "breed": "Maine Coon",
         "name": "Riley",
         "age": 10,
@@ -241,8 +241,8 @@ export const data = [
     },
     {
         "id": 24,
-        "animal": "Cat",
-        "breed": "Persian ",
+        "animal": "Cats",
+        "breed": "Persian",
         "name": "Rocky",
         "age": 4,
         "zipcode": 98109,
@@ -250,19 +250,9 @@ export const data = [
         "desc": "Rocky is way tooo cute for his own good. He wants to be your best friend ever aside from his incredible good looks. He can be a little shy at first but once he warms up he is a total ham! Rocky is a young boy so he needs a family that is ready to teach him how to be the best version of himself. He needs to learn the basic commands and work on his confidence. He is great with other dogs! And loves to go on long walks. Rocky would do best in a high active home that is ready to take a high active pup. He's doing well adjusting to the city. Currently loves his Brooklyn hood. He is good with cats but does want to play with them, is beyond determined to befriend one, but he's gentle and is learning that they usualy don't want to play puppy games. Intrested in adopting please go to www.socialteesnyc.org or reach out to your point person.\n\nHis Foster Mom Says: Hi, I'm Rocky, and it's not just a cute picture, my ears are always like that! I'm an 18-month-old Beagle/Lab mix who loves snuggling just as much as walks, hikes, and romping through the snow! I'm housebroken, crate trained, and can sit and lay down when asked... super smart and receptive to learning new things! I'm still a bit timid and am easily spooked by loud sounds and sometimes humans if they move quickly (this looks like getting really small and trying to hide), but getting more and more used to the people and noises of the city. I LOVE saying hi to dogs when we're on walks, so much so that I get a little whiny when I can't greet everyone... working on that. I'm totally well-behaved when I do get to sniff another pup, and I get along just fine with my foster fam's cat! I really like to be around my trusted humans, which includes following someone around the apartment, and crying for a minute or two when they go out on errands, before settling down in my crate quite quickly. Can't wait to show off my sweet, cuddly, playful self with my forever fam!\n\n"
     },
     {
-        "id": 25,
-        "animal": "Cat",
-        "breed": "Persian ",
-        "name": "Penny",
-        "age": 1,
-        "zipcode": 98109,
-        "img_url": "persian2",
-        "desc": "Penny is a 5 year old, somewhat shy kitty, but is coming around to trusting humans. Who can blame him? If he is left alone he will be a wonderful, cool, low maintenance (except for the long fur of course) companion. Like all the animals from the ANIMAL ADOPTION VETERINARY CENTER, Penny comes with ONE YEAR TOTALLY FREE VETERINARY CARE for any illness, if one occurs in the first year, and FREE LIFETIME EXAMS."
-    },
-    {
         "id": 26,
-        "animal": "Cat",
-        "breed": "Persian ",
+        "animal": "Cats",
+        "breed": "Persian",
         "name": "Sophie",
         "age": 4,
         "zipcode": 10012,
@@ -271,8 +261,8 @@ export const data = [
     },
     {
         "id": 27,
-        "animal": "Cat",
-        "breed": "Tabby ",
+        "animal": "Cats",
+        "breed": "Tabby",
         "name": "Chloe",
         "age": 7,
         "zipcode": 98109,
@@ -281,8 +271,8 @@ export const data = [
     },
     {
         "id": 28,
-        "animal": "Cat",
-        "breed": "Tabby ",
+        "animal": "Cats",
+        "breed": "Tabby",
         "name": "Jack",
         "age": 4,
         "zipcode": 10012,
@@ -291,8 +281,8 @@ export const data = [
     },
     {
         "id": 29,
-        "animal": "Cat",
-        "breed": "Calico ",
+        "animal": "Cats",
+        "breed": "Calico",
         "name": "Lily",
         "age": 5,
         "zipcode": 98109,
@@ -301,8 +291,8 @@ export const data = [
     },
     {
         "id": 30,
-        "animal": "Cat",
-        "breed": "Calico ",
+        "animal": "Cats",
+        "breed": "Calico",
         "name": "Nala",
         "age": 4,
         "zipcode": 10012,
@@ -311,8 +301,8 @@ export const data = [
     },
     {
         "id": 31,
-        "animal": "Cat",
-        "breed": "Calico ",
+        "animal": "Cats",
+        "breed": "Calico",
         "name": "Piper",
         "age": 6,
         "zipcode": 94117,
@@ -321,7 +311,7 @@ export const data = [
     },
     {
         "id": 32,
-        "animal": "Cat",
+        "animal": "Cats",
         "breed": "American Shorthair",
         "name": "Zeus",
         "age": 11,
@@ -331,7 +321,7 @@ export const data = [
     },
     {
         "id": 33,
-        "animal": "Cat",
+        "animal": "Cats",
         "breed": "American Shorthair",
         "name": "Ellie",
         "age": 7,
@@ -342,7 +332,7 @@ export const data = [
     {
         "id": 34,
         "animal": "Rabbits",
-        "breed": "American ",
+        "breed": "American",
         "name": "Winston",
         "age": 9,
         "zipcode": 94117,
@@ -352,7 +342,7 @@ export const data = [
     {
         "id": 35,
         "animal": "Rabbits",
-        "breed": "American ",
+        "breed": "American",
         "name": "Toby",
         "age": 4,
         "zipcode": 98109,
@@ -362,7 +352,7 @@ export const data = [
     {
         "id": 36,
         "animal": "Rabbits",
-        "breed": "Bunny Rabbit",
+        "breed": "Rex",
         "name": "Loki",
         "age": 3,
         "zipcode": 10012,
@@ -372,7 +362,7 @@ export const data = [
     {
         "id": 37,
         "animal": "Rabbits",
-        "breed": "Bunny Rabbit",
+        "breed": "Rex",
         "name": "Murphy",
         "age": 8,
         "zipcode": 94117,
@@ -382,7 +372,7 @@ export const data = [
     {
         "id": 38,
         "animal": "Rabbits",
-        "breed": "Bunny Rabbit",
+        "breed": "Dutch",
         "name": "Roxy",
         "age": 8,
         "zipcode": 94117,
@@ -412,7 +402,7 @@ export const data = [
     {
         "id": 41,
         "animal": "Rabbits",
-        "breed": "Dwarf ",
+        "breed": "Dwarf",
         "name": "Teddy",
         "age": 6,
         "zipcode": 94117,
@@ -442,7 +432,7 @@ export const data = [
     {
         "id": 44,
         "animal": "Small and Furry",
-        "breed": "Gerbil ",
+        "breed": "Gerbil",
         "name": "Leo",
         "age": 4,
         "zipcode": 98109,
@@ -452,7 +442,7 @@ export const data = [
     {
         "id": 45,
         "animal": "Small and Furry",
-        "breed": "Gerbil ",
+        "breed": "Gerbil",
         "name": "Finn",
         "age": 1,
         "zipcode": 94117,
@@ -462,7 +452,7 @@ export const data = [
     {
         "id": 46,
         "animal": "Small and Furry",
-        "breed": "Gerbil ",
+        "breed": "Gerbil",
         "name": "Scout",
         "age": 4,
         "zipcode": 94117,
@@ -472,7 +462,7 @@ export const data = [
     {
         "id": 47,
         "animal": "Small and Furry",
-        "breed": "Hamster ",
+        "breed": "Hamster",
         "name": "Dexter",
         "age": 4,
         "zipcode": 94117,
@@ -482,7 +472,7 @@ export const data = [
     {
         "id": 48,
         "animal": "Small and Furry",
-        "breed": "Hamster ",
+        "breed": "Hamster",
         "name": "Ollie",
         "age": 4,
         "zipcode": 94117,
@@ -492,7 +482,7 @@ export const data = [
     {
         "id": 49,
         "animal": "Small and Furry",
-        "breed": "Mouse ",
+        "breed": "Mouse",
         "name": "Koda",
         "age": 3,
         "zipcode": 10012,
@@ -502,7 +492,7 @@ export const data = [
     {
         "id": 50,
         "animal": "Small and Furry",
-        "breed": "Mouse ",
+        "breed": "Mouse",
         "name": "Diesel",
         "age": 1,
         "zipcode": 94117,
@@ -512,7 +502,7 @@ export const data = [
     {
         "id": 51,
         "animal": "Small and Furry",
-        "breed": "Mouse ",
+        "breed": "Mouse",
         "name": "Moose",
         "age": 2,
         "zipcode": 10012,
@@ -542,7 +532,7 @@ export const data = [
     {
         "id": 54,
         "animal": "Birds",
-        "breed": "Chicken ",
+        "breed": "Chicken",
         "name": "Gus",
         "age": 3,
         "zipcode": 10012,
@@ -552,7 +542,7 @@ export const data = [
     {
         "id": 55,
         "animal": "Birds",
-        "breed": "Chicken ",
+        "breed": "Chicken",
         "name": "Hank",
         "age": 4,
         "zipcode": 10012,
@@ -562,7 +552,7 @@ export const data = [
     {
         "id": 56,
         "animal": "Birds",
-        "breed": "Conure ",
+        "breed": "Conure",
         "name": "Willow",
         "age": 4,
         "zipcode": 10012,
@@ -572,7 +562,7 @@ export const data = [
     {
         "id": 57,
         "animal": "Birds",
-        "breed": "Conure ",
+        "breed": "Conure",
         "name": "Louie",
         "age": 1,
         "zipcode": 10012,
@@ -582,7 +572,7 @@ export const data = [
     {
         "id": 58,
         "animal": "Birds",
-        "breed": "Conure ",
+        "breed": "Conure",
         "name": "Thor",
         "age": 1,
         "zipcode": 94117,
@@ -592,7 +582,7 @@ export const data = [
     {
         "id": 59,
         "animal": "Birds",
-        "breed": "Macaw ",
+        "breed": "Macaw",
         "name": "Pepper",
         "age": 1,
         "zipcode": 98109,
@@ -602,7 +592,7 @@ export const data = [
     {
         "id": 60,
         "animal": "Birds",
-        "breed": "Macaw ",
+        "breed": "Macaw",
         "name": "Blue",
         "age": 1,
         "zipcode": 10012,
@@ -612,7 +602,7 @@ export const data = [
     {
         "id": 61,
         "animal": "Birds",
-        "breed": "Cockatoo ",
+        "breed": "Cockatoo",
         "name": "Koda",
         "age": 4,
         "zipcode": 98109,
@@ -622,7 +612,7 @@ export const data = [
     {
         "id": 62,
         "animal": "Birds",
-        "breed": "Cockatoo ",
+        "breed": "Cockatoo",
         "name": "Diesel",
         "age": 1,
         "zipcode": 10012,
@@ -631,4 +621,4 @@ export const data = [
     }
 ]
 
-// export {data}
+module.exports = data

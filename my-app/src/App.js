@@ -14,7 +14,6 @@ import {
 
 // import "./styles.css";
 
-  // form requiring zip code, animal, breed, max age
 // submit disabled until all fields filled
 // fields are validated
 // animal and breed are both dropdown
@@ -23,20 +22,11 @@ import {
 
 // example backend response for map between animal and breeds
 const animalToBreed = {
-  dog: ["german shepherd", "golden doodle", "havaneese", "pug", "husky"],
-  cat: ["persian", "rag doll", "shorthair", "burmese"],
-  bird: ["crow", "parrot", "eagle", "hawk"]
+  Dogs: ["german shepherd", "golden doodle", "havaneese", "pug", "husky"],
+  Cats: ["Persian", "Rag Doll", "American Shorthair", "burmese"],
+  Birds: ["crow", "parrot", "eagle", "hawk"]
 };
 
-// do later 
-const animalToMaxAge = {
-  dog: 14,
-  cat: 15,
-  bird: 20
-}
-
-// example backend response for animal list
-const animalList = ["bird", "cat", "dog"];
 
 function isValidUSZip(sZip) {
   return /(^\d{5}$)|(^\d{5}-\d{4}$)/.test(sZip) || sZip === ""
@@ -52,13 +42,12 @@ function InputForm() {
   // max age error
 
   // const classes = useStyles();
-  const [animal, setAnimal] = React.useState("cat");
-  const [breed, setBreed] = React.useState("persian");
+  const [animal, setAnimal] = React.useState("Cats");
+  const [breed, setBreed] = React.useState("Rag Doll");
+  const [currentAnimals, setCurrentAnimals] = React.useState(["Default"]);
   const [currentBreeds, setCurrentBreeds] = React.useState(["Default"]);
   const [zip, setZip] = React.useState("");
   const [age, setAge] = React.useState("");
-
-  const [data, setData] = React.useState(null);
   
   const [zipcodeError, setZipcodeError] = React.useState(false);
   const [maxAgeError, setMaxAgeError] = React.useState(false);
@@ -67,23 +56,18 @@ function InputForm() {
     setAnimal(event.target.value);
   };
 
-  // pass in query params 
-  // React.useEffect(() => {
-  //   fetch('/animals/data')
-  //     .then((response) => response.json())
-  //     .then(setData)
-  // }, [])
-
-  // if (data) {
-  //  return <div>{JSON.stringify(data)}</div>
-  // }
+  React.useEffect(() => {
+    fetch('/animals/animalList')
+      .then((response) => response.json())
+      .then(setCurrentAnimals)
+  }, [])
 
   React.useEffect(() => {
-    // fetch('/users')
-    //   .then(res => res.json())
-    //   .then(users => )
-    setCurrentBreeds(animalToBreed[animal]);
-  }, [animal]);
+    fetch(`/animals/animalToBreedList?animal=${animal}`)
+      .then((response) => response.json())
+      .then(setCurrentBreeds)
+      console.log(animal)
+  }, [animal])
 
   const handleBreedChange = (event) => {
     setBreed(event.target.value);
@@ -114,6 +98,7 @@ function InputForm() {
   // <zipContext.Provider value=zip>
   // </zipContext.Provider>
 
+  // probably want to move the link change into here?
   const handleSubmitForm = () => {
     // <Link to="?zipcode=zip">Relative query</Link>
     //setZipcodeError(!isValidUSZip(zip));
@@ -129,9 +114,6 @@ function InputForm() {
     </Button>
 
   return (
-    // <div>
-    //   null case
-    // </div>
     <>
       <div>
       <br></br>
@@ -153,7 +135,7 @@ function InputForm() {
           value={animal}
           onChange={handleAnimalChange}
         >
-          {animalList.map((animal) => (
+          {currentAnimals.map((animal) => (
             <MenuItem value={animal}>{animal}</MenuItem>
           ))}
         </Select>
@@ -193,10 +175,6 @@ function InputForm() {
     </>
   );
 }
-
-// add a use effects to parse the url query params gotten from the for inputs
-// this is where call to backend is made - do w empty {} so that it only is called on the component did moint equivalanet
-
 
 function SearchResults({location}) {
   console.log(parse(location.search))
@@ -238,26 +216,30 @@ function SearchResults({location}) {
 
 
 function PetDetails({petId, location}) {
-  // later on could fetch more pet info from an api on the express server
-  console.log(petId)
-  console.log(parse(location))
-  console.log(parse(location.search))
-  let petInfo = pets[petId];
-
   const [petDetails, setPetDetails] = React.useState(null);
 
   React.useEffect(() => {
-    fetch('/animals/petDetails')
+    fetch(`/animals/petDetails?id=${petId}`)
       .then((response) => response.json())
       .then(setPetDetails)
   }, [])
 
+  if (!petDetails) {
+    return null
+  }
   return (
     <>
-      <h1>{petInfo.name}</h1>
-      <p>Age: {petInfo.age}</p>
-      <p>Location: {petInfo.zipcode}</p>
-      <p>Description: {petInfo.desc}</p>
+      <h1>Description</h1>
+      <h1>{petDetails.name}</h1>
+      <p>Age: {petDetails.age}</p>
+      <p>Location: {petDetails.zipcode}</p>
+      <img 
+        alt="pet" 
+        src={"https://storage.googleapis.com/borland/"+petDetails.img_url+".jpg"} 
+        width="100%" 
+        height="auto" 
+      />
+      <p>Description: {petDetails.desc}</p>
     </>
   );
 }
@@ -280,90 +262,8 @@ export default function App() {
       <Router>
         <InputForm path="/"/>
         <SearchResults path="/search" />
-        <PetDetails path="/search/pet/:petvgId" />
+        <PetDetails path="/search/pet/:petId" />
       </Router>
     </div>
   );
 }
-
-let pets = {
-  1: {
-    name: "James",
-    age: 8,
-    location: 95220,
-    image: "https://borland.s3.amazonaws.com/dog1.jpg",
-    desc: "he's a very happy dog!"
-  },
-  2: {
-    name: "Max",
-    age: 5,
-    location: 95220,
-    image: "https://borland.s3.amazonaws.com/dog2.jpg",
-    desc: "he's a very sad dog!"
-  },
-  3: {
-    name: "Marvin",
-    age: 2,
-    location: 95220,
-    image: "https://borland.s3.amazonaws.com/dog3.jpg",
-    desc: "he's a very mean dog!"
-  },
-  4: {
-    name: "Carla",
-    age: 12,
-    location: 95220,
-    image: "https://borland.s3.amazonaws.com/dog4.jpg",
-    desc: "he's a very enthusiastic dog!"
-  },
-  5: {
-    name: "Eddy",
-    age: 2,
-    location: 95220,
-    image: "https://borland.s3.amazonaws.com/dog5.jpg",
-    desc: "he's a very calm dog!"
-  }
-};
-
-let searchResults = [
-  {
-    id: 1,
-    name: "James",
-    age: 8,
-    location: 95220,
-    image: "https://borland.s3.amazonaws.com/dog1.jpg",
-    desc: "he's a very happy dog!"
-  },
-  {
-    id: 2,
-    name: "Max",
-    age: 5,
-    location: 95220,
-    image: "https://borland.s3.amazonaws.com/dog2.jpg",
-    desc: "he's a very sad dog!"
-  },
-  {
-    id: 3,
-    name: "Marvin",
-    age: 2,
-    location: 95220,
-    image: "https://borland.s3.amazonaws.com/dog3.jpg",
-    desc: "he's a very mean dog!"
-  },
-  {
-    id: 4,
-    name: "Carla",
-    age: 12,
-    location: 95220,
-    image: "https://borland.s3.amazonaws.com/dog4.jpg",
-    desc: "he's a very enthusiastic dog!"
-  },
-  {
-    id: 5,
-    name: "Eddy",
-    age: 2,
-    location: 95220,
-    image: "https://borland.s3.amazonaws.com/dog5.jpg",
-    desc: "he's a very calm dog!"
-  }
-];
-
