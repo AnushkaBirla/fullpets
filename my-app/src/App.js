@@ -9,6 +9,10 @@ import {
   Button,
   Select,
   MenuItem,
+  AppBar,
+  Toolbar,
+  Typography,
+  makeStyles,
 } from "@material-ui/core";
 
 // submit disabled until all fields filled
@@ -28,12 +32,10 @@ class Input extends React.Component {
     this.state = {
       animal: "Cats",
       breed: "Persian",
-      currentAnimals: ["Default"],
-      currentBreeds: ["Default"],
+      currentAnimals: ["Cats"],
+      currentBreeds: ["Persian"],
       zip: "",
       age: "",
-      zipcodeError: false,
-      ageError: false,
     }
   }
 
@@ -45,56 +47,61 @@ class Input extends React.Component {
       })
   }
 
-  // use this for stting states based on past states and props
-  // this.setState((state, props) => ({
-  //   counter: state.counter + props.increment
-  // }));
-
-    render() {
-
-      const handleSubmitForm = () => {
-        // <Link to="?zipcode=zip">Relative query</Link>
-        //setZipcodeError(!isValidUSZip(zip));
-      }
-
-      const handleAnimalChange = (event) => {
-        this.setState({animal: event.target.value});
-      }
-
-      const handleBreedChange = (event) => {
-        this.setState({breed: event.target.value});
-      }
-    
-      const handleZipCodeChange = (event) => {
-        this.setState({zip: event.target.value});
-      };
-    
-      const handleAgeChange = (event) => {
-        this.setState({age: event.target.value});
-      }
-
-      // console.log(this.state.animal)
-
+  componentDidUpdate (prevState) {
+    if ((prevState.animal !== this.state.animal)) {
       fetch(`/animals/animalToBreedList?animal=${this.state.animal}`)
         .then((response) => response.json())
         .then(result => {
           this.setState({currentBreeds: result})
-        })
+      })
+    }
+  }
 
-      // this.setState({zipcodeError: !isValidUSZip(this.state.zip)})
-      // this.setState({ageError: !isValidAge(this.state.age)})
+  handleValueChange = (event, name) => {
+    console.log(event)
+    this.setState({name: event.target.value})
+  }
 
+  handleAnimalChange = (event) => {
+    this.setState({animal: event.target.value})
+    this.setState({breed: ""})
+  }
+
+  handleBreedChange = (event) => {
+    this.setState({breed: event.target.value})
+  }
+
+  handleZipCodeChange = (event) => {
+    this.setState({zip: event.target.value})
+  };
+
+  handleAgeChange = (event) => {
+    this.setState({age: event.target.value})
+  }
+
+
+    render() {
+
+      const zipcodeError = !isValidUSZip(this.state.zip)
+      const maxAgeError = !isValidAge(this.state.age)
 
       var zip = this.state.zip
       var animal = this.state.animal
       var breed = this.state.breed
       var age = this.state.age
 
+      var allFieldsFilled = this.state.animal && this.state.breed && this.state.age && this.state.zip
+
+      const ableToSubmit = (event) => {
+        if (!allFieldsFilled) {
+          event.preventDefault()
+        }
+      }
+
       const submitButton = 
         <Button 
           variant="contained" 
-          onClick={handleSubmitForm}
-          disabled={!(animal && breed && age && zip)}
+          disabled={!allFieldsFilled}
         >
           Submit
         </Button>
@@ -104,11 +111,11 @@ class Input extends React.Component {
           <div>
           <br></br>
             <TextField
-              error={this.state.zipcodeError}
-              helperText={this.state.zipcodeError ? "Invalid ZIP code" : ""}
+              error={zipcodeError}
+              helperText={zipcodeError ? "Invalid ZIP code" : ""}
               id="standard-error-helper-text"
               label="Zipcode"
-              onChange={handleZipCodeChange}
+              onChange={this.handleZipCodeChange}
             />
             <br></br>
           </div>
@@ -119,7 +126,7 @@ class Input extends React.Component {
               labelId="demo-simple-select-label"
               id="demo-simple-select"
               value={animal}
-              onChange={handleAnimalChange}
+              onChange={this.handleAnimalChange}
             >
               {this.state.currentAnimals.map((animal) => (
                 <MenuItem value={animal}>{animal}</MenuItem>
@@ -134,7 +141,7 @@ class Input extends React.Component {
               labelId="demo-simple-select-label"
               id="demo-simple-select"
               value={breed}
-              onChange={handleBreedChange}
+              onChange={this.handleBreedChange}
             >
               {this.state.currentBreeds.map((breed) => (
                 <MenuItem value={breed}>{breed}</MenuItem>
@@ -144,17 +151,19 @@ class Input extends React.Component {
           <br></br>
           <br></br>
           <TextField
-            error={this.state.maxAgeError}
-            helperText={this.state.maxAgeError ? "Invalid pet age" : ""}
+            error={maxAgeError}
+            helperText={maxAgeError ? "Invalid pet age" : ""}
             id="standard-error-helper-text"
             label="Max pet age"
-            onChange={handleAgeChange}
+            onChange={this.handleAgeChange}
           />
           <br></br>
           <br></br>
           <br></br>
           <Link 
             to={`search?zip=${zip}&animal=${animal}&breed=${breed}&maxage=${age}`}
+            style={{ textDecoration: 'none' }}
+            onClick={ableToSubmit}
           >
             {submitButton}
           </Link>
@@ -163,145 +172,154 @@ class Input extends React.Component {
   }
 }
 
-// function InputForm() {
+function InputForm() {
 
-//   // const classes = useStyles();
-//   const [animal, setAnimal] = React.useState("Cats");
-//   const [breed, setBreed] = React.useState("Persian");
-//   const [currentAnimals, setCurrentAnimals] = React.useState(["Default"]);
-//   const [currentBreeds, setCurrentBreeds] = React.useState(["Default"]);
-//   const [zip, setZip] = React.useState("");
-//   const [age, setAge] = React.useState("");
+  // const classes = useStyles();
+  const [animal, setAnimal] = React.useState("Cats");
+  const [breed, setBreed] = React.useState("Persian");
+  const [currentAnimals, setCurrentAnimals] = React.useState(["Default"]);
+  const [currentBreeds, setCurrentBreeds] = React.useState(["Default"]);
+  const [zip, setZip] = React.useState("");
+  const [age, setAge] = React.useState("");
   
-//   const [zipcodeError, setZipcodeError] = React.useState(false);
-//   const [maxAgeError, setMaxAgeError] = React.useState(false);
+  const [zipcodeError, setZipcodeError] = React.useState(false);
+  const [maxAgeError, setMaxAgeError] = React.useState(false);
 
-//   const handleAnimalChange = (event) => {
-//     setAnimal(event.target.value);
-//   };
+  const handleAnimalChange = (event) => {
+    setAnimal(event.target.value);
+  };
 
-//   React.useEffect(() => {
-//     fetch('/animals/animalList')
-//       .then((response) => response.json())
-//       .then(setCurrentAnimals)
-//   }, [])
+  React.useEffect(() => {
+    fetch('/animals/animalList')
+      .then((response) => response.json())
+      .then(setCurrentAnimals)
+  }, [])
 
-//   React.useEffect(() => {
-//     fetch(`/animals/animalToBreedList?animal=${animal}`)
-//       .then((response) => response.json())
-//       .then(setCurrentBreeds)
-//       console.log(animal)
-//   }, [animal])
+  React.useEffect(() => {
+    fetch(`/animals/animalToBreedList?animal=${animal}`)
+      .then((response) => response.json())
+      .then(setCurrentBreeds)
+  }, [animal])
 
-//   const handleBreedChange = (event) => {
-//     setBreed(event.target.value);
-//   };
+  const handleBreedChange = (event) => {
+    setBreed(event.target.value);
+  };
 
-//   const handleZipCodeChange = (event) => {
-//     // var numberPattern = /^\d+$/
-//     // if (numberPattern.test(event.target.value)) {
-//     //   setZip(event.target.value);
-//     // }
-//     setZip(event.target.value);
-//   };
+  const handleZipCodeChange = (event) => {
+    setZip(event.target.value);
+  };
 
-//   const handleAgeChange = (event) => {
-//     setAge(event.target.value)
-//   }
+  const handleAgeChange = (event) => {
+    setAge(event.target.value)
+  }
 
-//   React.useEffect(() => {
-//     setZipcodeError(!isValidUSZip(zip));
-//   }, [zip]);
+  React.useEffect(() => {
+    setZipcodeError(!isValidUSZip(zip));
+  }, [zip]);
 
-//   React.useEffect(() => {
-//     setMaxAgeError(!isValidAge(age));
-//   }, [age]);
+  React.useEffect(() => {
+    setMaxAgeError(!isValidAge(age));
+  }, [age]);
 
-//   const zipContext = React.createContext(null)
+  // const zipContext = React.createContext(null)
+  // <zipContext.Provider value=zip>
+  // </zipContext.Provider>
 
-//   // <zipContext.Provider value=zip>
-//   // </zipContext.Provider>
+  const allFieldsFilled = animal && breed && age && zip
 
-//   // probably want to move the link change into here?
-//   const handleSubmitForm = () => {
-//     // <Link to="?zipcode=zip">Relative query</Link>
-//     //setZipcodeError(!isValidUSZip(zip));
-//   };
+  const ableToSubmit = (event) => {
+    if (!allFieldsFilled) {
+      event.preventDefault()
+    }
+  }
 
-//   const submitButton = 
-//     <Button 
-//       variant="contained" 
-//       onClick={handleSubmitForm}
-//       disabled={!(animal && breed && age && zip)}
-//     >
-//       Submit
-//     </Button>
+  const submitButton = 
+    <Button 
+      variant="contained" 
+      disabled={!allFieldsFilled}
+    >
+      Submit
+    </Button>
 
-//   return (
-//     <>
-//       <div>
-//       <br></br>
-//         <TextField
-//           error={zipcodeError}
-//           helperText={zipcodeError ? "Invalid ZIP code" : ""}
-//           id="standard-error-helper-text"
-//           label="Zipcode"
-//           onChange={handleZipCodeChange}
-//         />
-//         <br></br>
-//       </div>
-//       <br></br>
-//       <FormControl>
-//         <InputLabel id="demo-simple-select-label">Animal</InputLabel>
-//         <Select
-//           labelId="demo-simple-select-label"
-//           id="demo-simple-select"
-//           value={animal}
-//           onChange={handleAnimalChange}
-//         >
-//           {currentAnimals.map((animal) => (
-//             <MenuItem value={animal}>{animal}</MenuItem>
-//           ))}
-//         </Select>
-//       </FormControl>
-//       <br></br>
-//       <br></br>
-//       <FormControl>
-//         <InputLabel id="demo-simple-select-label">Breed</InputLabel>
-//         <Select
-//           labelId="demo-simple-select-label"
-//           id="demo-simple-select"
-//           value={breed}
-//           onChange={handleBreedChange}
-//         >
-//           {currentBreeds.map((breed) => (
-//             <MenuItem value={breed}>{breed}</MenuItem>
-//           ))}
-//         </Select>
-//       </FormControl>
-//       <br></br>
-//       <br></br>
-//       <TextField
-//         error={maxAgeError}
-//         helperText={maxAgeError ? "Invalid pet age" : ""}
-//         id="standard-error-helper-text"
-//         label="Max pet age"
-//         onChange={handleAgeChange}
-//       />
-//       <br></br>
-//       <br></br>
-//       <br></br>
-//       <Link 
-//         to={`search?zip=${zip}&animal=${animal}&breed=${breed}&maxage=${age}`}
-//       >
-//         {submitButton}
-//       </Link>
-//     </>
-//   );
-// }
+  const useStyles = makeStyles(theme => ({
+    offset: theme.mixins.toolbar,
+  }))
+  const classes = useStyles();
+
+  return (
+    <>
+      <div className="App-header">
+      <AppBar position="fixed">
+        <Toolbar className="cherry-background">
+          <Typography variant="h6" className="cherry-title">
+            PetsGalore
+          </Typography>
+        </Toolbar>
+      </AppBar>
+      <div className={classes.offset} />
+      <br></br>
+        <TextField
+          error={zipcodeError}
+          helperText={zipcodeError ? "Invalid ZIP code" : ""}
+          id="standard-error-helper-text"
+          label="Zipcode"
+          onChange={handleZipCodeChange}
+        />
+        <br></br>
+      </div>
+      <br></br>
+      <FormControl>
+        <InputLabel id="demo-simple-select-label">Animal</InputLabel>
+        <Select
+          labelId="demo-simple-select-label"
+          id="demo-simple-select"
+          value={animal}
+          onChange={handleAnimalChange}
+        >
+          {currentAnimals.map((animal) => (
+            <MenuItem value={animal}>{animal}</MenuItem>
+          ))}
+        </Select>
+      </FormControl>
+      <br></br>
+      <br></br>
+      <FormControl>
+        <InputLabel id="demo-simple-select-label">Breed</InputLabel>
+        <Select
+          labelId="demo-simple-select-label"
+          id="demo-simple-select"
+          value={breed}
+          onChange={handleBreedChange}
+        >
+          {currentBreeds.map((breed) => (
+            <MenuItem value={breed}>{breed}</MenuItem>
+          ))}
+        </Select>
+      </FormControl>
+      <br></br>
+      <br></br>
+      <TextField
+        error={maxAgeError}
+        helperText={maxAgeError ? "Invalid pet age" : ""}
+        id="standard-error-helper-text"
+        label="Max pet age"
+        onChange={handleAgeChange}
+      />
+      <br></br>
+      <br></br>
+      <br></br>
+      <Link 
+        to={`search?zip=${zip}&animal=${animal}&breed=${breed}&maxage=${age}`}
+        style={{ textDecoration: 'none' }}
+        onClick={ableToSubmit}
+      >
+        {submitButton}
+      </Link>
+    </>
+  );
+}
 
 function SearchResults({location}) {
-  console.log(parse(location.search))
   const [petData, setPetData] = React.useState(null);
 
   const animal = parse(location.search).animal
@@ -339,7 +357,7 @@ function SearchResults({location}) {
 }
 
 
-function PetDetails({petId, location}) {
+function PetDetails({petId}) {
   const [petDetails, setPetDetails] = React.useState(null);
 
   React.useEffect(() => {
