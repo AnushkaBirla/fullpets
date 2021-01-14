@@ -1,6 +1,6 @@
-import './App.css';
-import React from "react";
-import { Router, Link } from "@reach/router";
+import './App.css'
+import React from "react"
+import { Router, Link } from "@reach/router"
 import { parse } from 'query-string'
 import {
   FormControl,
@@ -11,9 +11,14 @@ import {
   MenuItem,
   AppBar,
   Toolbar,
-  Typography,
   makeStyles,
-} from "@material-ui/core";
+  Typography,
+  Card,
+  CardMedia,
+  CardContent,
+  CardActions,
+  Grid,
+} from "@material-ui/core"
 
 // submit disabled until all fields filled
 
@@ -25,10 +30,11 @@ function isValidUSZip(sZip) {
   return /(^\d{5}$)|(^\d{5}-\d{4}$)/.test(sZip) || sZip === ""
 }
 
+
 class Input extends React.Component {
 
   constructor(props) {
-    super(props);
+    super(props)
     this.state = {
       animal: "Cats",
       breed: "Persian",
@@ -73,7 +79,7 @@ class Input extends React.Component {
 
   handleZipCodeChange = (event) => {
     this.setState({zip: event.target.value})
-  };
+  }
 
   handleAgeChange = (event) => {
     this.setState({age: event.target.value})
@@ -82,15 +88,16 @@ class Input extends React.Component {
 
     render() {
 
-      const zipcodeError = !isValidUSZip(this.state.zip)
-      const maxAgeError = !isValidAge(this.state.age)
-
       var zip = this.state.zip
       var animal = this.state.animal
       var breed = this.state.breed
       var age = this.state.age
 
-      var allFieldsFilled = this.state.animal && this.state.breed && this.state.age && this.state.zip
+      const zipcodeError = !isValidUSZip(zip)
+      const maxAgeError = !isValidAge(age)
+
+
+      var allFieldsFilled = animal && breed && age && zip
 
       const ableToSubmit = (event) => {
         if (!allFieldsFilled) {
@@ -101,6 +108,7 @@ class Input extends React.Component {
       const submitButton = 
         <Button 
           variant="contained" 
+          color="primary"
           disabled={!allFieldsFilled}
         >
           Submit
@@ -108,86 +116,92 @@ class Input extends React.Component {
 
       return (
         <>
-          <div>
-          <br></br>
-            <TextField
-              error={zipcodeError}
-              helperText={zipcodeError ? "Invalid ZIP code" : ""}
-              id="standard-error-helper-text"
-              label="Zipcode"
-              onChange={this.handleZipCodeChange}
-            />
-            <br></br>
+          <div className="Input-form">
+            <Typography variant="h6">Find the perfect new family member</Typography>
+            <Typography paragraph="true">
+              Fill out the form below to browse pets available for adoption near you!
+            </Typography>
+
+            <Grid container direction={"column"} spacing={5}>
+              <Grid item>
+                <TextField
+                  error={zipcodeError}
+                  helperText={zipcodeError ? "Invalid ZIP code, please enter a valid ZIP code" : ""}
+                  id="standard-error-helper-text"
+                  label="ZIP code"
+                  onChange={this.handleZipCodeChange}
+                />
+              </Grid>
+              <Grid item>
+                <FormControl>
+                  <InputLabel id="demo-simple-select-label">Animal</InputLabel>
+                  <Select
+                    labelId="demo-simple-select-label"
+                    id="demo-simple-select"
+                    value={animal}
+                    onChange={this.handleAnimalChange}
+                  >
+                    {this.state.currentAnimals.map((animal) => (
+                      <MenuItem value={animal}>{animal}</MenuItem>
+                    ))}
+                  </Select>
+                </FormControl>
+              </Grid>
+              <Grid item>
+                <FormControl>
+                  <InputLabel id="demo-simple-select-label">Breed</InputLabel>
+                  <Select
+                    labelId="demo-simple-select-label"
+                    id="demo-simple-select"
+                    value={breed}
+                    onChange={this.handleBreedChange}
+                  >
+                    {this.state.currentBreeds.map((breed) => (
+                      <MenuItem value={breed}>{breed}</MenuItem>
+                    ))}
+                  </Select>
+                </FormControl>
+              </Grid>
+              <Grid item>
+                <TextField
+                  error={maxAgeError}
+                  helperText={maxAgeError ? "Invalid pet age, please enter numbers only" : ""}
+                  id="standard-error-helper-text"
+                  label="Maximum pet age"
+                  onChange={this.handleAgeChange}
+                />
+              </Grid>
+            </Grid>
+            <br/>
+            <br/>
+            <Link 
+              to={`search?zip=${zip}&animal=${animal}&breed=${breed}&maxage=${age}`}
+              style={{ textDecoration: 'none' }}
+              onClick={ableToSubmit}
+            >
+              {submitButton}
+            </Link>
           </div>
-          <br></br>
-          <FormControl>
-            <InputLabel id="demo-simple-select-label">Animal</InputLabel>
-            <Select
-              labelId="demo-simple-select-label"
-              id="demo-simple-select"
-              value={animal}
-              onChange={this.handleAnimalChange}
-            >
-              {this.state.currentAnimals.map((animal) => (
-                <MenuItem value={animal}>{animal}</MenuItem>
-              ))}
-            </Select>
-          </FormControl>
-          <br></br>
-          <br></br>
-          <FormControl>
-            <InputLabel id="demo-simple-select-label">Breed</InputLabel>
-            <Select
-              labelId="demo-simple-select-label"
-              id="demo-simple-select"
-              value={breed}
-              onChange={this.handleBreedChange}
-            >
-              {this.state.currentBreeds.map((breed) => (
-                <MenuItem value={breed}>{breed}</MenuItem>
-              ))}
-            </Select>
-          </FormControl>
-          <br></br>
-          <br></br>
-          <TextField
-            error={maxAgeError}
-            helperText={maxAgeError ? "Invalid pet age" : ""}
-            id="standard-error-helper-text"
-            label="Max pet age"
-            onChange={this.handleAgeChange}
-          />
-          <br></br>
-          <br></br>
-          <br></br>
-          <Link 
-            to={`search?zip=${zip}&animal=${animal}&breed=${breed}&maxage=${age}`}
-            style={{ textDecoration: 'none' }}
-            onClick={ableToSubmit}
-          >
-            {submitButton}
-          </Link>
         </>
-      );
+      )
   }
 }
 
 function InputForm() {
 
-  // const classes = useStyles();
-  const [animal, setAnimal] = React.useState("Cats");
-  const [breed, setBreed] = React.useState("Persian");
-  const [currentAnimals, setCurrentAnimals] = React.useState(["Default"]);
-  const [currentBreeds, setCurrentBreeds] = React.useState(["Default"]);
-  const [zip, setZip] = React.useState("");
-  const [age, setAge] = React.useState("");
+  const [animal, setAnimal] = React.useState("Cats")
+  const [breed, setBreed] = React.useState("Persian")
+  const [currentAnimals, setCurrentAnimals] = React.useState(["Default"])
+  const [currentBreeds, setCurrentBreeds] = React.useState(["Default"])
+  const [zip, setZip] = React.useState("")
+  const [age, setAge] = React.useState("")
   
-  const [zipcodeError, setZipcodeError] = React.useState(false);
-  const [maxAgeError, setMaxAgeError] = React.useState(false);
+  const [zipcodeError, setZipcodeError] = React.useState(false)
+  const [maxAgeError, setMaxAgeError] = React.useState(false)
 
   const handleAnimalChange = (event) => {
-    setAnimal(event.target.value);
-  };
+    setAnimal(event.target.value)
+  }
 
   React.useEffect(() => {
     fetch('/animals/animalList')
@@ -202,24 +216,24 @@ function InputForm() {
   }, [animal])
 
   const handleBreedChange = (event) => {
-    setBreed(event.target.value);
-  };
+    setBreed(event.target.value)
+  }
 
   const handleZipCodeChange = (event) => {
-    setZip(event.target.value);
-  };
+    setZip(event.target.value)
+  }
 
   const handleAgeChange = (event) => {
     setAge(event.target.value)
   }
 
   React.useEffect(() => {
-    setZipcodeError(!isValidUSZip(zip));
-  }, [zip]);
+    setZipcodeError(!isValidUSZip(zip))
+  }, [zip])
 
   React.useEffect(() => {
-    setMaxAgeError(!isValidAge(age));
-  }, [age]);
+    setMaxAgeError(!isValidAge(age))
+  }, [age])
 
   // const zipContext = React.createContext(null)
   // <zipContext.Provider value=zip>
@@ -244,7 +258,7 @@ function InputForm() {
   const useStyles = makeStyles(theme => ({
     offset: theme.mixins.toolbar,
   }))
-  const classes = useStyles();
+  const classes = useStyles()
 
   return (
     <>
@@ -316,11 +330,11 @@ function InputForm() {
         {submitButton}
       </Link>
     </>
-  );
+  )
 }
 
 function SearchResults({location}) {
-  const [petData, setPetData] = React.useState(null);
+  const [petData, setPetData] = React.useState(null)
 
   const animal = parse(location.search).animal
   const breed = parse(location.search).breed
@@ -336,9 +350,13 @@ function SearchResults({location}) {
   if (!petData) {
     return null
   }
+
   return (
-    <div className="App">
-      <h1>Search Results</h1>
+    <>
+      <Typography variant="h6">Search Results</Typography>
+      <a href={`/`}>Back to search</a>
+      <br/>
+      <br/>
       {petData.map((result) => {
         return (
           <PetCard
@@ -350,15 +368,15 @@ function SearchResults({location}) {
             image={"https://storage.googleapis.com/borland/"+result.img_url+".jpg"}
             desc={result.desc}
           />
-        );
+        )
       })}
-    </div>
-  );
+    </>
+  )
 }
 
 
 function PetDetails({petId}) {
-  const [petDetails, setPetDetails] = React.useState(null);
+  const [petDetails, setPetDetails] = React.useState(null)
 
   React.useEffect(() => {
     fetch(`/animals/petDetails?id=${petId}`)
@@ -371,41 +389,80 @@ function PetDetails({petId}) {
   }
   return (
     <>
-      <h1>Description</h1>
-      <h1>{petDetails.name}</h1>
-      <p>Age: {petDetails.age}</p>
-      <p>Location: {petDetails.zipcode}</p>
-      <img 
+      <img className="Pet-details-picture"
         alt="pet" 
         src={"https://storage.googleapis.com/borland/"+petDetails.img_url+".jpg"} 
-        width="100%" 
+        width="50%" 
         height="auto" 
       />
-      <p>Description: {petDetails.desc}</p>
+      <Typography variant="h4">{petDetails.name}</Typography>
+      <Typography variant="body1">Age: {petDetails.age}</Typography>
+      <Typography variant="body1">Location: {petDetails.zipcode}</Typography>
+      <br></br>
+      <Typography variant="body2">{petDetails.desc}</Typography>    
     </>
-  );
+  )
 }
 
+const useStyles = makeStyles({
+  root: {
+    maxWidth: 700,
+    marginBlockEnd: 50,
+    shadows: true,
+    flexDirection: 'row'
+  },
+  media: {
+    height: 300,
+  },
+})
+
 function PetCard(props) {
+  const classes = useStyles()
+
+  const seeMore = 
+    <Button size="small" color="primary">
+      See More 
+    </Button>
+
   return (
-    <>
-      <h1>{props.name}</h1>
-      <p>Age: {props.age}</p>
-      <p>Location: {props.location}</p>
-      <img alt="pet" src={props.image} width="100%" height="auto" />
-      <Link to={`pet/${props.id}`}>More details</Link>
-    </>
-  );
+    <Card className={classes.root}>
+      <CardMedia
+        className={classes.media}
+        image={props.image}
+        title="Pet"
+      />
+      <CardContent>
+        <Typography gutterBottom variant="h5" component="h2">{props.name}</Typography>
+        <Typography gutterBottom variant="body1">{props.age} years old - Lives in: {props.location}</Typography>
+        <Typography variant="body2" color="textSecondary" component="p" noWrap="false">
+          {props.desc}
+        </Typography>
+      </CardContent>
+      <CardActions>
+        <Link 
+          to={`pet/${props.id}`}
+          style={{ textDecoration: 'none' }}
+        >
+            {seeMore}
+        </Link>
+      </CardActions>
+    </Card>
+  )
 }
 
 export default function App() {
   return (
-    <div className="App">
+    <>
+      <AppBar position="sticky" className="header">
+        <Toolbar><Typography variant="h6">PetsGalore</Typography></Toolbar>
+      </AppBar>
+      <div className="App">
       <Router>
         <Input path="/"/>
-        <SearchResults path="/search" />
+        <SearchResults path="/search"/>
         <PetDetails path="/search/pet/:petId" />
       </Router>
-    </div>
-  );
+      </div>
+    </>
+  )
 }

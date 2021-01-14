@@ -255,7 +255,7 @@ const data = [
         "breed": "Persian",
         "name": "Sophie",
         "age": 4,
-        "zipcode": 10012,
+        "zipcode": 98109,
         "img_url": "persian3",
         "desc": "Sophie is the cutest kitten with an equally sweet temperment. She will have medium to long hair and looks like a Maine Coon mix."
     },
@@ -285,7 +285,7 @@ const data = [
         "breed": "Calico",
         "name": "Lily",
         "age": 5,
-        "zipcode": 98109,
+        "zipcode": 10012,
         "img_url": "calico1",
         "desc": "I'm beautiful Lily, a senior lady who urgently needs a foster home or an adopter asap (January 2021). My human is really sick and she has to give me up. So I need a new place to stay.\n\nI ended up with my human many years ago, when I was born in her yard. She was taking good care of my mother, and when I was born, she took me in along with my siblings, and I've been with her ever since. That was a long time ago. I am 12 years old now. I know that a lot of people don't want to adopt older cats, but I am in great health and am still active and spunky.\n\nMy favorite thing to do is to watch birds. If you have a lovely window and a window shelf or a cat tree by a big window for me, I will be very happy with that. I'm pretty low maintenance and independent, just living out my golden years as I see fit."
     },
@@ -305,7 +305,7 @@ const data = [
         "breed": "Calico",
         "name": "Piper",
         "age": 6,
-        "zipcode": 94117,
+        "zipcode": 10012,
         "img_url": "calico3",
         "desc": "My name is Piper and I'm a big girl, but I don't understand why. I'm an active string toy chaser and I really like to chase my treats around, so much so, that I allow myself a few extras now and then. The exercise cancels out the calories, right? I'm also very grounded. By grounded, I mean I prefer to keep my feet on the ground at all times. No picky uppy for me. But I'm really friendly and an attention-grabber, quite literally. I will tap you with my paw when I want your attention. My owner sadly passed away and I was surrendered to ACC. I think I'm ready to admit that I need a little help with my dieting, so It would probably be best if my next home had a gym and a personal trainer or at least be with someone who can get me in shape."
     },
@@ -345,7 +345,7 @@ const data = [
         "breed": "American",
         "name": "Toby",
         "age": 4,
-        "zipcode": 98109,
+        "zipcode": 94117,
         "img_url": "american2",
         "desc": "Toby is a stunning medium-sized agouti female. True to her name this bun is a classic beauty with an edge. She's a big city girl with smarts and wit, Yet she is as mellow and easy-going as they come. Toby loves playing with her willow toys and tunnels, doing super fast binkies, and exploring new places. She is quite independent and will follow her own whiskers wherever they take her, even if it means getting “stuck” on a soft blanket that just happened to fall on the floor. Once ready to take a break from her glamorous adventures, she will come when called and settle down next to her human for pets and/or a body massage. (She is Toby, after all!) Toby has the most dreamy eyes, whitest of bellies, and softest of necks. Her litterbox skills are impeccable, and aside from radicchio there is not much this divine lady does not enjoy. She has been spayed and is in foster care. For more information, please contact nyc.metro.rabbits@gmail.com."
     },
@@ -375,7 +375,7 @@ const data = [
         "breed": "Dutch",
         "name": "Roxy",
         "age": 8,
-        "zipcode": 94117,
+        "zipcode": 10012,
         "img_url": "bunnyrabbit3",
         "desc": "Roxy is a black and white male Dutch rabbit who is approximately 3-4 years old and looking for a forever home. He is very sweet and friendly, seeking human companionship and lots of petting. He had his incisors removed when he was younger but eats normally. His owner moved and left him behind with a roommate who cannot care for him long-term. He has been neutered. If interested in potentially adopting Roxy, please email nyc.metro.rabbits@gmail.com."
     },
@@ -395,7 +395,7 @@ const data = [
         "breed": "Dutch ",
         "name": "Rosie",
         "age": 9,
-        "zipcode": 98109,
+        "zipcode": 10012,
         "img_url": "dutch2",
         "desc": "Rosie is medium-sized black and white Dutch. She is a very happy, interactive, and relaxed bunny. Rosie has been spayed and is currently in foster care. For more information and/or to arrange a meeting with Rosie, please email nyc.metro.rabbits@gmail.com."
     },
